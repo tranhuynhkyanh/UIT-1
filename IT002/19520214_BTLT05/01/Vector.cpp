@@ -41,9 +41,8 @@ void Vector::Nhap() {
 void Vector::Xuat() {
 	cout << "[=> Vector: ";
 	cout << "(";
-	for (int i = 0; i < n-1; i++) {
+	for (int i = 0; i < n - 1; i++)
 		cout << this->v[i] << ",";
-	}
 	cout << v[n - 1] << ")";
 	cout << endl << endl;
 }

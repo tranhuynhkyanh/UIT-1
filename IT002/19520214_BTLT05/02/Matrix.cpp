@@ -78,14 +78,14 @@ void Matrix::Vector_Cong_Matrix(Vector a, Matrix b) {
 		cout << "[=> Khong the cong!" << endl;
 }
 void Matrix::Vector_Nhan_Matrix(Vector a, Matrix b) {
-	if (a.n != b.n)
+	if (a.n != b.m)
 		cout << "[=> Khong the nhan!" << endl;
 	else {
-		Vector result(b.m);
-		for (int i = 0; i < b.m; i++) {
+		Vector result(b.n);
+		for (int i = 0; i < b.n; i++) {
 			result.v[i] = 0;
-			for (int j = 0; j < b.n; j++)
-				result.v[i] += a.v[j] * b.f[i][j];
+			for (int j = 0; j < a.n; j++)
+				result.v[i] += a.v[j] * b.f[j][i];
 		}
 		cout << "[=> Ket qua sau khi nhan: " << endl;
 		result.Xuat();
