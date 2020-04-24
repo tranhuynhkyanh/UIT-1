@@ -1,5 +1,6 @@
 #include "DaThuc.h"
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -28,17 +29,21 @@ void DaThuc::Nhap() {
 }
 
 void DaThuc::Xuat() {
+	cout << "f(x) = ";
 	bool print_first = true;
 	for (int i = 0; i < BacCaoNhat + 1; i++) {
 		if (HeSoDaThuc[i] != 0) {
 			if (print_first == true) {
-				cout << HeSoDaThuc[i];
+				if (HeSoDaThuc[i] != 1)
+					cout << HeSoDaThuc[i];
 				print_first = false;
 			} else {
 				if (HeSoDaThuc[i] > 0)
-					cout << "+ " << abs(HeSoDaThuc[i]);
+					cout << "+ ";
 				else
-					cout << "- " << abs(HeSoDaThuc[i]);
+					cout << "- ";
+				if (HeSoDaThuc[i] != 1)
+					cout << abs(HeSoDaThuc[i]);
 			}
 			if (SoMuDaThuc[i] != 0)
 				cout << "x^" << SoMuDaThuc[i] << " ";
@@ -113,5 +118,37 @@ DaThuc operator-(DaThuc a, int b) {
 	return _result;
 }
 
+void DaThuc::Xuat(int x) {
+	long long _result = 0;
+	cout << "f(" << x << ") = ";
+	bool print_first = true;
+	for (int i = 0; i < BacCaoNhat + 1; i++) {
+		if (HeSoDaThuc[i] != 0) {
+			if (print_first == true) {
+				if (HeSoDaThuc[i] != 1)
+					cout << HeSoDaThuc[i];
+				print_first = false;
+			}
+			else {
+				if (HeSoDaThuc[i] > 0)
+					cout << "+ ";
+				else
+					cout << "- ";
+				if (HeSoDaThuc[i] != 1)
+					cout << abs(HeSoDaThuc[i]);
+			}
+			if (HeSoDaThuc[i] != 1 && SoMuDaThuc[i] != 0) cout << "*";;
+			if (SoMuDaThuc[i] != 0)
+				cout << x << "^" << SoMuDaThuc[i] << " ";
+			else
+				cout << " ";
+		}
+	}
+	for (int i = 0; i < BacCaoNhat + 1; i++) {
+		_result += HeSoDaThuc[i] * pow(x, SoMuDaThuc[i]);
+	}
+	cout << "= " << _result;
+	cout << endl;
+}
 
 

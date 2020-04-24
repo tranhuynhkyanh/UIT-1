@@ -6,6 +6,7 @@ private:
 public:
 	void Nhap();
 	void Xuat();
+	void Xuat(int x);
 	friend bool operator!=(DaThuc a, DaThuc b);
 	friend DaThuc operator+(DaThuc a, DaThuc b);
 	friend DaThuc operator-(DaThuc a, DaThuc b);

@@ -43,6 +43,10 @@ int main() {
     d = b - k;
     cout << "[=> Da thuc 2 - " << k << ": ";
     d.Xuat();
+	cout << "[=> Gia tri da thuc 1 tai x = " << k << ": ";
+	a.Xuat(k);
+	cout << "[=> Gia tri da thuc 2 tai x = " << k << ": ";
+	b.Xuat(k);
 
 	return 0;
 }
