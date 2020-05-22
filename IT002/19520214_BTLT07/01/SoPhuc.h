@@ -19,7 +19,9 @@ public:
 	friend SoPhuc operator-(SoPhuc a, int b);
 	SoPhuc& operator=(SoPhuc& a);
 	friend istream& operator>>(istream& is, SoPhuc& a) {
+		cout << "- Nhap phan thuc: ";
 		is >> a.fThuc;
+		cout << "- Nhap phan ao: ";
 		is >> a.fAo;
 		return is;
 	}

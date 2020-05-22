@@ -21,9 +21,15 @@
     <ClCompile Include="NhanVien.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="CongTy.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NhanVien.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CongTy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
