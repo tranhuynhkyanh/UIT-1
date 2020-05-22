@@ -24,6 +24,15 @@ int _lower_bound(int* arr, int x){
 
 int main(){
     ios_base::sync_with_stdio(false); cin.tie(0);
-    cout << "Con Cac" << endl;
+    cin >> n;
+    int* a = new int[n];
+    for(int i = 0; i < n; i++)
+        cin >> a[i];
+    int x;
+    cin >> m;
+    for(int i = 0; i < m; i++){
+        cin >> x;
+        cout << _lower_bound(a, x) << "\n";
+    }
     return 0;
 }
