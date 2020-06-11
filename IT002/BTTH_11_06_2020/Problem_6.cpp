@@ -22,19 +22,24 @@ public:
     int getViTriMeCha(){
         return loai - 1;
     }
-    int getViTriNhan(){
+    int getViTri(){
         return 2*loai + rh - 2;
     }
-    friend bool checkResultNhan(Mau a, Mau b){
-        bool table[8][8] = {{1,0,0,0,0,0,0,0},
-                            {1,1,0,0,0,0,0,0},
-                            {1,0,1,0,0,0,0,0},
-                            {1,1,1,1,0,0,0,0},
-                            {1,0,0,0,1,0,0,0},
-                            {1,1,0,0,1,1,0,0},
-                            {1,0,1,0,1,0,1,0},
-                            {1,1,1,1,1,1,1,1}};
-        return table[a.getViTriNhan(), b.getViTriNhan()];
+    string getTenMau(){
+        string result = "";
+        if (loai == 1) result = "O";
+        if (loai == 2) result = "A";
+        if (loai == 3) result = "B";
+        if (loai == 4) result = "AB";
+        if (rh == 0) result += '-';
+        if (rh == 1) result += '+';
+        return result;
+    }
+    string getTenXetNghiem(){
+        if (loai == 1) return "O";
+        if (loai == 2) return "A";
+        if (loai == 3) return "B";
+        if (loai == 4) return "AB";
     }
 };
 
@@ -70,6 +75,52 @@ public:
     }
 };
 
+string getTenMauVoiViTri(int vitri){
+    int loai = (vitri / 2) + 1, rh;
+    if (vitri % 2 == 0) rh = 0;
+        else rh = 1;
+    string result = "";
+    if (loai == 1) result = "O";
+    if (loai == 2) result = "A";
+    if (loai == 3) result = "B";
+    if (loai == 4) result = "AB";
+    if (rh == 0) result += '-';
+    if (rh == 1) result += '+';
+    return result;
+}
+
+bool checkResult(int x, int y){
+    bool table[8][8] = {{1,0,0,0,0,0,0,0},
+                        {1,1,0,0,0,0,0,0},
+                        {1,0,1,0,0,0,0,0},
+                        {1,1,1,1,0,0,0,0},
+                        {1,0,0,0,1,0,0,0},
+                        {1,1,0,0,1,1,0,0},
+                        {1,0,1,0,1,0,1,0},
+                        {1,1,1,1,1,1,1,1}};
+    return table[x][y];
+}
+
+class MauCon{
+public:
+    string arr[4];
+};
+
+bool checkHuyetThong(Mau cha, Mau me, Mau con){
+    int vitricha = cha.getViTriMeCha();
+    int vitrime = me.getViTriMeCha();
+    string maucuacon = con.getTenXetNghiem();
+    MauCon table[4][4] = {
+        {{"O", "-", "-", "-"}, {"O", "A", "-", "-"},  {"O", "-", "B", "-"},  {"-", "A", "B", "-"}},
+        {{"O", "A", "-", "-"}, {"O", "A", "-", "-"},  {"O", "A", "B", "AB"}, {"-", "A", "B", "AB"}},
+        {{"O", "-", "B", "-"}, {"O", "A", "B", "AB"}, {"O", "-", "B", "-"},  {"-", "A", "B", "AB"}},
+        {{"-", "A", "B", "-"}, {"-", "A", "B", "AB"}, {"-", "A", "B", "AB"}, {"-", "A", "B", "AB"}}
+    };
+    for(int i = 0; i < 4; i++)
+        if (maucuacon == table[vitrime][vitricha].arr[i]) return true;
+    return false;
+}
+
 int main(){
     Mau *mau[1010];
     int n, loaimau;
@@ -98,7 +149,25 @@ int main(){
         }
     }
     cout << "YEU CAU 2\n";
-    Mau a, b, c;
-    a.Nhap(); b.Nhap(); c.Nhap();
+    Mau cha, me, con;
+    cout << "[=> Nhap mau cha: \n";
+    cha.Nhap();
+    cout << "[=> Nhap mau me: \n";
+    me.Nhap();
+    cout << "[=> Nhap mau con: \n";
+    con.Nhap();
+    cout << "[=> Ket qua xet nghiem: ";
+    if (checkHuyetThong(cha, me, con))
+        cout << "La con cua cha me!\n";
+    else
+        cout << "La con cua hang xom roi!!\n";
+    cout << "YEU CAU 3\n";
+    Mau maunhan;
+    maunhan.Nhap();
+    cout << "[=> Nhom mau co the cho nhom mau " << maunhan.getTenMau() << ": ";
+    for(int i = 0; i < 8; i++){
+        if (checkResult(maunhan.getViTri(), i))
+            cout << getTenMauVoiViTri(i) << " ";
+    }
     return 0;
 }
