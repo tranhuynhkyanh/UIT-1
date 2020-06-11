@@ -39,7 +39,7 @@ public:
         if (loai == 1) return "O";
         if (loai == 2) return "A";
         if (loai == 3) return "B";
-        if (loai == 4) return "AB";
+        return "AB";
     }
 };
 
